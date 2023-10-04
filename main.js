@@ -1,5 +1,5 @@
 const boxes=Array.from(document.querySelectorAll(".diagonal"));
-
+const restart=document.querySelector("#btn")
 const X_text="X";
 const O_text="O";
 let currentPlayer=X_text;
@@ -16,8 +16,21 @@ function boxclicked(e){
   if(check[boxId]===null){
     check[boxId]=currentPlayer;
     e.target.innerText=currentPlayer;
-    currentPlayer= currentPlayer===X_text ? O_text:X_text;
+    if(currentPlayer===X_text){
+      currentPlayer=O_text;
+    }
+    else{
+      currentPlayer=X_text;
+    }
   }
 }
+
+function Restart(){
+  check.fill(null);
+  boxes.forEach((box)=>{
+    box.innerText='';
+  })
+}
+restart.addEventListener('click',Restart);
 
 startGame();
