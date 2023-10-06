@@ -23,7 +23,7 @@ body{
   .diagonal {
     width: 100px;
     height: 100px;
-    font-size:28px;
+    font-size:90px;
     text-align: center;
     border: 2px solid black;
     display: flex;
@@ -52,5 +52,73 @@ body{
     margin-top: 30px;
     border-radius:5px;
   }
+
+#positive-diagonal {
+  position: absolute;
+  top: 150px;
+  left: 683px;
+  transform: rotate(44deg);
+  height: 330px;
+  border: 4px solid black;
+}
+
+#negative-diagonal {
+  position: absolute;
+  top: 150px;
+  left: 683px;
+  transform: rotate(-44deg);
+  height: 330px;
+  border: 4px solid black;
+}
+
+#first-vertical {
+  width: 300px;
+  border: 4px solid black;
+  position: absolute;
+  top: 210px;
+  left: 285px;
+}
+
+#second-vertical {
+  width: 300px;
+  border: 4px solid black;
+  position: absolute;
+  top: 310px;
+  left: 285px;
+}
+
+
+#third-vertical {
+  width: 300px;
+  border: 4px solid black;
+  position: absolute;
+  top: 410px;
+  left: 285px;
+}
+
+
+#first-horizontal {
+  height: 300px;
+  border: 4px solid black;
+  position: absolute;
+  top: 162px;
+  left: 577px;
+}
+
+#second-horizontal {
+  height: 300px;
+  border: 4px solid black;
+  position: absolute;
+  top: 162px;
+  left: 677px;
+}
+
+#third-horizontal {
+  height: 300px;
+  border: 4px solid black;
+  position: absolute;
+  top: 162px;
+  left: 777px;
+}
 
 
