@@ -16,9 +16,14 @@ body{
 
 #main-box{
     width: 300px;
-    display:flex;
-    flex-wrap: wrap;
     margin: 30px;
+}
+.visible{
+  display:flex;
+  flex-wrap: wrap;
+}
+.hidden{
+  display: none;
 }
   .diagonal {
     width: 100px;
@@ -119,6 +124,32 @@ body{
   position: absolute;
   top: 162px;
   left: 777px;
+}
+
+#playerSelect {
+  display: block;
+  height: 400px;
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+   flex-direction: column;
+  gap:20px 
+}
+
+.player{
+  font-size: 20px;
+  border: 1px solid black;
+  border-radius: 16px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+#singlePlayer{
+  background-color:chartreuse;
+}
+#twoPlayer{
+  background-color:cornflowerblue;
 }
 
 

@@ -4,11 +4,26 @@ const boxes=Array.from(document.querySelectorAll(".diagonal"));
 
 let restart=document.querySelector("#btn");
 const box = document.getElementById("main-box");
+const playerSelect=document.getElementById("playerSelect");
+const singlePlayer=document.getElementById("singlePlayer");
+const twoPlayer=document.getElementById("twoPlayer");
 const X_text="X";
 const O_text="O";
-let attempt=0;
 let currentPlayer=X_text;
 let check=Array(9).fill(null);
+
+singlePlayer.addEventListener('click',()=>{
+  box.classList.toggle('hidden');
+  box.classList.add("visible");
+  playerSelect.style.display="none";
+});
+
+twoPlayer.addEventListener('click',()=>{
+  box.classList.toggle('hidden');
+  box.classList.add("visible");
+  playerSelect.style.display="none";
+  startGame();
+});
 
 const startGame=()=>{
   boxes.forEach((box)=>{
@@ -17,7 +32,6 @@ const startGame=()=>{
 }
 
 function boxclicked(e){
-  attempt++;
   let boxId=e.target.id;
   if(check[boxId]===null){
     check[boxId]=currentPlayer;
@@ -75,7 +89,7 @@ function checkFinished() {
     alert(`Player ${(currentPlayer === "X") ? "O" : "X"} Won!`);
     location.reload();
   }else{
-    if(attempt === 9) {
+    if (check.every((value) => value !== null)) {
       alert("Draw");
       location.reload();
     }
@@ -91,5 +105,3 @@ function Restart(){
   });
 }
 restart.addEventListener('click',Restart);
-
-startGame();
