@@ -1,14 +1,31 @@
 "use strict";
 
 const boxes=Array.from(document.querySelectorAll(".diagonal"));
-
 let restart=document.querySelector("#btn");
 const box = document.getElementById("main-box");
+const playerSelect=document.getElementById("playerSelect");
+const singlePlayer=document.getElementById("singlePlayer");
+const twoPlayer=document.getElementById("twoPlayer");
 const X_text="X";
 const O_text="O";
-let attempt=0;
+let singleMode;
 let currentPlayer=X_text;
 let check=Array(9).fill(null);
+
+singlePlayer.addEventListener('click',()=>{
+  box.classList.toggle('hidden');
+  box.classList.add("visible");
+  playerSelect.style.display="none";
+  singleMode=true;
+  startGame();
+});
+
+twoPlayer.addEventListener('click',()=>{
+  box.classList.toggle('hidden');
+  box.classList.add("visible");
+  playerSelect.style.display="none";
+  startGame();
+});
 
 const startGame=()=>{
   boxes.forEach((box)=>{
@@ -17,7 +34,6 @@ const startGame=()=>{
 }
 
 function boxclicked(e){
-  attempt++;
   let boxId=e.target.id;
   if(check[boxId]===null){
     check[boxId]=currentPlayer;
@@ -27,11 +43,39 @@ function boxclicked(e){
     }
     else{
       currentPlayer=X_text;
-    }
+    } 
   }
-  checkFinished();
+  if(singleMode===true){
+    computerMove();
+  }
+  else{
+    checkFinished();
+  }
+  
 }
 
+function computerMove(){
+  let empty=check.filter(value=>value===null);
+  const randomIndex =Math.floor(Math.random() * check.length);
+  if(check[randomIndex]===null){
+    check[randomIndex]=currentPlayer;
+    boxes[randomIndex].innerText=currentPlayer;
+    if(currentPlayer===X_text){
+      currentPlayer=O_text;
+    }
+    else{
+      currentPlayer=X_text;
+    }
+     checkFinished();
+  }
+  else if(empty.length>1){
+    computerMove();
+  }
+  else{
+    checkFinished();
+  }
+  
+}
 
 function checkFinished() {
   let win=false;
@@ -75,7 +119,7 @@ function checkFinished() {
     alert(`Player ${(currentPlayer === "X") ? "O" : "X"} Won!`);
     location.reload();
   }else{
-    if(attempt === 9) {
+    if (check.every((value) => value !== null)) {
       alert("Draw");
       location.reload();
     }
@@ -91,5 +135,3 @@ function Restart(){
   });
 }
 restart.addEventListener('click',Restart);
-
-startGame();
